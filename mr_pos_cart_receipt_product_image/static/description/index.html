@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        /* ── Odoo App Store native classes ───────────────────────────
+           These map 1-to-1 with the styles Odoo injects on the
+           apps.odoo.com listing page.  They also look great in the
+           Odoo backend /web#action=base_setup.action_general_configuration
+           "App Store" iframe preview.
+        ────────────────────────────────────────────────────────────── */
+        body  { font-family: 'Segoe UI', Arial, sans-serif; color: #555; background: #fff; }
+        a     { color: #017e84; }
+
+        .oe_container        { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .oe_row              { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+        .oe_spaced           { margin-top: 32px; margin-bottom: 32px; }
+        .oe_span12           { width: 100%; padding: 0 15px; }
+        .oe_span6            { width: 50%; padding: 0 15px; box-sizing: border-box; }
+        .oe_span4            { width: 33.33%; padding: 0 15px; box-sizing: border-box; }
+        .oe_mt32             { margin-top: 32px; }
+        .oe_mb32             { margin-bottom: 32px; }
+
+        /* Slogans */
+        .oe_slogan           { text-align: center; margin: 8px 0; }
+        h2.oe_slogan         { font-size: 2em; font-weight: 700; color: #1976d2; }
+        h3.oe_slogan         { font-size: 1.2em; font-weight: 400; color: #888; }
+
+        /* Screenshots */
+        .oe_screenshot       { max-width: 100%; border-radius: 6px;
+                               border: 1px solid #e0e0e0;
+                               box-shadow: 0 2px 10px rgba(0,0,0,0.10); }
+        .oe_picture          { display: block; }
+
+        /* Section divider */
+        .oe_separator        { border: none; border-top: 1px solid #e8e8e8; margin: 40px 0; }
+
+        /* Feature block text */
+        .oe_span6 h2, .oe_span4 h2 {
+            font-size: 1.5em; font-weight: 700; color: #1976d2;
+            margin-top: 32px; margin-bottom: 12px;
+        }
+        .oe_span6 h3, .oe_span4 h3 {
+            font-size: 1.1em; font-weight: 600; color: #444;
+            margin-top: 20px; margin-bottom: 8px;
+        }
+        .oe_span6 p, .oe_span4 p, .oe_span12 p {
+            font-size: 0.97em; line-height: 1.7; color: #555;
+        }
+        ul.oe_ul             { padding-left: 20px; margin: 8px 0; }
+        ul.oe_ul li          { font-size: 0.97em; line-height: 1.9; color: #555; }
+        ul.oe_ul li::marker  { color: #1976d2; }
+
+        /* Feature icon boxes */
+        .o_feature_box {
+            text-align: center; padding: 28px 20px 24px;
+            border: 1px solid #e8f0fb; border-radius: 10px;
+            background: #f8fbff; height: 100%;
+        }
+        .o_feature_box .o_icon { font-size: 2.2em; margin-bottom: 12px; display: block; }
+        .o_feature_box h3      { font-size: 1em; font-weight: 700; color: #1565c0; margin-bottom: 8px; }
+        .o_feature_box p       { font-size: 0.88em; color: #666; line-height: 1.6; }
+
+        /* Screenshot placeholder (remove once you have real screenshots) */
+        .ss_placeholder {
+            background: #eaf1ff; border: 2px dashed #93beff;
+            border-radius: 8px; min-height: 300px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 10px;
+            color: #5a88c8; text-align: center; padding: 24px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .ss_placeholder .ico { font-size: 2.5em; opacity: 0.55; }
+        .ss_placeholder b    { font-size: 0.95em; }
+        .ss_placeholder span { font-size: 0.85em; color: #7a9ec8; }
+        .ss_caption { text-align: center; font-size: 0.83em; color: #999; margin-top: 8px; font-style: italic; }
+
+        /* Compat table */
+        .oe_table { width: 100%; border-collapse: collapse; font-size: 0.93em; margin-top: 12px; }
+        .oe_table th { background: #1976d2; color: #fff; padding: 10px 16px; text-align: left; }
+        .oe_table td { padding: 10px 16px; border-bottom: 1px solid #e8f0fb; color: #444; }
+        .oe_table tr:last-child td { border-bottom: none; }
+        .oe_table tr:nth-child(even) td { background: #f8fbff; }
+        .yes { color: #2e7d32; font-weight: 700; }
+        .no  { color: #b71c1c; }
+
+        /* Footer CTA strip */
+        .oe_cta {
+            background: linear-gradient(135deg, #1a3a5c 0%, #1976d2 100%);
+            color: #fff; text-align: center; padding: 48px 24px; margin-top: 48px;
+        }
+        .oe_cta h2 { font-size: 1.6em; margin-bottom: 12px; }
+        .oe_cta p  { opacity: 0.85; font-size: 1em; margin-bottom: 22px; }
+        .oe_cta a  { display: inline-block; background: #fff; color: #1565c0;
+                     font-weight: 700; padding: 11px 28px; border-radius: 6px;
+                     text-decoration: none; margin: 4px 6px; font-size: 0.93em; }
+        .oe_cta a.outline { background: transparent; color: #fff;
+                            border: 2px solid rgba(255,255,255,0.6); }
+
+        @media (max-width: 768px) {
+            .oe_span6, .oe_span4 { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="oe_container">
+
+    <!-- ═══════════════════════════════════════════════════════
+         HEADER SLOGAN
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">POS Product Image on Cart, Receipt &amp; Invoice</h2>
+            <h3 class="oe_slogan">
+                Display product images everywhere a sale happens —
+                cart lines, printed receipt, and customer invoice PDF.
+            </h3>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot"
+                 src="screenshots/ss_01_overview.png"
+                 alt="POS cart with product images on every order line"/>
+            <p class="ss_caption">Product images on every POS cart order line</p>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURE 1 — POS Cart  (text left | screenshot right)
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <h2>Product Image on POS Cart</h2>
+            <p>
+                Every order line in the Point of Sale cart shows a small thumbnail
+                of the product. Cashiers can visually confirm the right item
+                at a glance — even on the busiest shifts — without having to
+                read long product names or barcodes.
+            </p>
+            <ul class="oe_ul">
+                <li>Thumbnail appears next to the product name on every cart line.</li>
+                <li>Uses Odoo's built-in <code>image_128</code> field — no extra upload needed.</li>
+                <li>Toggle on/off per POS shop from Settings.</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <img class="oe_picture oe_screenshot"
+                 src="screenshots/ss_02_cart.png"
+                 alt="POS cart order lines with product thumbnails"/>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURE 2 — Receipt  (screenshot left | text right)
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <img class="oe_picture oe_screenshot"
+                 src="screenshots/ss_03_receipt.png"
+                 alt="Printed receipt with product images on each line"/>
+        </div>
+        <div class="oe_span6">
+            <h2>Product Image on Printed Receipt</h2>
+            <p>
+                The same product thumbnail is printed next to each line
+                on the customer receipt. This makes the receipt immediately
+                clear and professional — especially useful for gift purchases,
+                high-value items, or shops with large product catalogues.
+            </p>
+            <ul class="oe_ul">
+                <li>Image appears alongside product name on every receipt line.</li>
+                <li>Sized to fit standard receipt paper without layout issues.</li>
+                <li>Toggle on/off per POS shop independently of cart setting.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURE 3 — Invoice  (text left | screenshot right)
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <h2>Product Image on Customer Invoice PDF</h2>
+            <p>
+                A dedicated image column is added to the customer invoice PDF.
+                Every product line displays its thumbnail, giving your invoices
+                a polished, branded appearance that stands out and builds
+                customer confidence.
+            </p>
+            <ul class="oe_ul">
+                <li>Image column inserted automatically — no template editing required.</li>
+                <li>One global toggle applies to all POS shops (invoices are shop-independent).</li>
+                <li>Compatible with Odoo's default and custom invoice report layouts.</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <img class="oe_picture oe_screenshot"
+                 src="screenshots/ss_04_invoice.png"
+                 alt="Customer invoice PDF with product image column"/>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURE 4 — Settings  (screenshot left | text right)
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <img class="oe_picture oe_screenshot"
+                 src="screenshots/ss_05_settings.png"
+                 alt="POS Settings showing Product Images toggles"/>
+        </div>
+        <div class="oe_span6">
+            <h2>Simple Settings — Full Control</h2>
+            <p>
+                All controls live in one place: <strong>Point of Sale → Configuration → Settings</strong>,
+                under the new <strong>Product Images</strong> section. Each of the three locations
+                has its own independent switch so you can enable exactly what your
+                workflow needs — nothing more.
+            </p>
+            <ul class="oe_ul">
+                <li><b>Cart lines</b> — toggle per POS shop.</li>
+                <li><b>Receipt</b> — toggle per POS shop.</li>
+                <li><b>Invoice PDF</b> — one global toggle for all shops.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+    <!-- ═══════════════════════════════════════════════════════
+         6-FEATURE ICON GRID
+    ════════════════════════════════════════════════════════ -->
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Key Features</h2>
+            <h3 class="oe_slogan">Everything you need — nothing you don't.</h3>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">🖼️</span>
+                <h3>Auto Product Images</h3>
+                <p>Uses Odoo's built-in <code>image_128</code> field. No extra upload or configuration — if the product has an image, it appears automatically.</p>
+            </div>
+        </div>
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">⚙️</span>
+                <h3>Independent Toggles</h3>
+                <p>Cart, receipt, and invoice each have their own on/off switch. Enable only what you need without affecting the others.</p>
+            </div>
+        </div>
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">🏪</span>
+                <h3>Multi-Shop Support</h3>
+                <p>Cart and receipt toggles are per POS shop. Each shop can have completely independent settings.</p>
+            </div>
+        </div>
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">⚡</span>
+                <h3>Zero Performance Impact</h3>
+                <p>Images are served through Odoo's native web image controller. No CDN, no proxy, no extra requests outside Odoo.</p>
+            </div>
+        </div>
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">🎨</span>
+                <h3>Native Look &amp; Feel</h3>
+                <p>Integrates with Odoo's existing POS cart template. No theme overrides, no visual clashes with your current POS skin.</p>
+            </div>
+        </div>
+        <div class="oe_span4" style="margin-bottom:20px;">
+            <div class="o_feature_box">
+                <span class="o_icon">🔒</span>
+                <h3>Secure &amp; Standard</h3>
+                <p>Follows Odoo's ORM security model throughout. System parameters accessed with <code>sudo()</code> only where strictly required.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="oe_separator"/>
+
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     MEET THE DEVELOPER
+════════════════════════════════════════════════════════ -->
+<div class="oe_cta">
+    <h2>Meet the Developer</h2>
+    <p style="font-size:1.25em; font-weight:700; margin-bottom:6px; opacity:1;">Mantu Raj</p>
+    <p style="margin-bottom:22px;">
+        Have a question, feature request, or need a customisation?<br/>
+        Feel free to reach out — happy to help.
+    </p>
+    <a href="mailto:workmantu105@gmail.com">✉ workmantu105@gmail.com</a>
+    <a class="outline" href="https://www.linkedin.com/in/mantu105/" target="_blank">LinkedIn — Mantu Raj</a>
+</div>
+
+</body>
+</html>

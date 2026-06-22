@@ -1,0 +1,23 @@
+/* Product image on POS cart order lines */
+.orderline .o_line_container {
+    flex: 0 0 auto;
+    margin-right: 8px;
+}
+
+.orderline .o_line_container img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+}
+
+/* Product image on the printed receipt */
+.pos-receipt .orderline .o_line_container {
+    margin-right: 6px;
+}
+
+.pos-receipt .orderline .o_line_container img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px !important;
+}

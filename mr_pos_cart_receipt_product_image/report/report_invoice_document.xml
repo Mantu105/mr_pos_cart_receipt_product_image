@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_invoice_document_pos_image"
+              inherit_id="account.report_invoice_document">
+
+        <!-- Make the global "image on invoice" switch available to both the
+             table header and body (table-level scope). -->
+        <xpath expr="//table[@name='invoice_line_table']/thead" position="before">
+            <t t-set="show_pos_invoice_image"
+               t-value="env['ir.config_parameter'].sudo().get_param('mr_pos_cart_receipt_product_image.image_invoice') in ('True', 'true', '1')"/>
+        </xpath>
+
+        <!-- Header column -->
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_pos_image" t-if="show_pos_invoice_image" class="text-start">
+                <span>Image</span>
+            </th>
+        </xpath>
+
+        <!-- Body cell for product lines -->
+        <xpath expr="//td[@name='account_invoice_line_name']" position="before">
+            <td name="td_pos_image" t-if="show_pos_invoice_image" class="text-start">
+                <img t-if="line.product_id and line.product_id.image_128"
+                     t-att-src="image_data_uri(line.product_id.image_128)"
+                     style="max-height:40px; max-width:40px; object-fit:cover;"
+                     alt="Product Image"/>
+            </td>
+        </xpath>
+
+    </template>
+
+</odoo>
