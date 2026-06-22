@@ -1,0 +1,1 @@
+# mr_pos_cart_receipt_product_image
