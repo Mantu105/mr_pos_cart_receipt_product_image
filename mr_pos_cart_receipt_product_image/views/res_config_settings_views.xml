@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_pos_product_image" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pos.product.image</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_interface_section']" position="after">
+                <block title="Product Images" id="pos_product_image_section"
+                       invisible="not pos_config_id">
+                    <setting help="Show the product image on each line of the POS cart.">
+                        <field name="pos_iface_image_orderline"/>
+                    </setting>
+                    <setting help="Print the product image next to each line on the customer receipt.">
+                        <field name="pos_iface_image_receipt"/>
+                    </setting>
+                    <setting help="Add a product image column to the customer invoice PDF.">
+                        <field name="pos_image_invoice"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
